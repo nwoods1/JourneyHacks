@@ -1,0 +1,49 @@
+/* Base calendar */
+.fc {
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* Toolbar */
+.fc-toolbar-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.fc-button {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #435a8e;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.fc-button:hover {
+  background-color: #f3f4f6;
+}
+
+.fc-button-primary:not(:disabled).fc-button-active {
+  background-color: #111827;
+  border-color: #111827;
+  color: white;
+}
+
+/* Day cells */
+.fc-daygrid-day-frame {
+  padding: 6px;
+}
+
+.fc-day-today {
+  background-color: #eef2ff !important;
+}
+
+/* Events (later useful) */
+.fc-event {
+  border-radius: 6px;
+  padding: 2px 4px;
+  font-size: 0.75rem;
+}
+
+.fc, .fc * {
+  color: #111827;
+}
