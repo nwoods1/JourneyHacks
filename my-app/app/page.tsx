@@ -13,7 +13,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import Navbar from '@/components/Navbar';
 import EventList from '@/components/EventList';
-import CalendarView from '@/components/CalendarView';
+import CalendarContainer from "@/components/CalendarContainer";
 
 
 
@@ -32,7 +32,8 @@ export default function Home() {
 
       <div className="flex flex-row flex-1 overflow-hidden">
         <EventList />
-        <CalendarView />
+        
+        <CalendarContainer />
       </div>
     </main>
   );

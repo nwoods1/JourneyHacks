@@ -1,71 +1,87 @@
 "use client";
 
-
-import { useMemo, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import { DateSelectArg } from "@fullcalendar/core";
-import { EventClickArg } from "@fullcalendar/core";
-import { EventResizeDoneArg } from "@fullcalendar/interaction";
-import { EventDropArg } from "@fullcalendar/core";
-import { EventInput } from "@fullcalendar/core";
-
-type CalEvent = EventInput & { id: string };
+import type { DateSelectArg, EventClickArg, EventDropArg } from "@fullcalendar/core";
+import type { EventResizeDoneArg } from "@fullcalendar/interaction";
+import type { CalEvent } from "@/lib/calendar/mapper.ts";
 
 function makeId() {
   return crypto.randomUUID();
 }
 
-export default function Calendar() {
-  const [events, setEvents] = useState<CalEvent[]>([]);
+type CalendarMode = "read" | "edit";
+
+export default function CalendarView({
+  events,
+  mode = "edit",
+  onCreate,
+  onUpdate,
+  onDelete,
+}: {
+  events: CalEvent[];
+  mode?: CalendarMode;
+  onCreate?: (ev: CalEvent) => void;
+  onUpdate?: (ev: CalEvent) => void;
+  onDelete?: (id: string) => void;
+}) {
+  const canEdit = mode === "edit" && !!onUpdate;
+  const canCreate = mode === "edit" && !!onCreate;
+  const canDelete = mode === "edit" && !!onDelete;
 
   const handleSelect = (info: DateSelectArg) => {
-    info.view.calendar.unselect();
+    if (!canCreate) return;
 
+    info.view.calendar.unselect();
     const title = window.prompt("Event name?");
     if (!title) return;
 
-    setEvents((prev) => [
-      ...prev,
-      {
-        id: makeId(),
-        title,
-        start: info.start,
-        end: info.end,
-        allDay: info.allDay,
-      },
-    ]);
+    onCreate?.({
+      id: makeId(),
+      title: title.trim(),
+      start: info.start,
+      end: info.end,
+      allDay: info.allDay,
+    });
   };
 
   const handleEventClick = (clickInfo: EventClickArg) => {
+    if (mode !== "edit") return;
+
     const action = window.prompt(
       `Type a new name to rename.\nType DELETE to delete.\n(Current: "${clickInfo.event.title}")`
     );
-
     if (!action) return;
 
     if (action.trim().toUpperCase() === "DELETE") {
-      setEvents((prev) => prev.filter((e) => e.id !== clickInfo.event.id));
+      if (!canDelete) return;
+      onDelete?.(String(clickInfo.event.id));
       return;
     }
 
-    setEvents((prev) =>
-      prev.map((e) =>
-        e.id === clickInfo.event.id ? { ...e, title: action.trim() } : e
-      )
-    );
+    if (!canEdit) return;
+
+    onUpdate?.({
+      id: String(clickInfo.event.id),
+      title: action.trim(),
+      start: clickInfo.event.start ?? undefined,
+      end: clickInfo.event.end ?? undefined,
+      allDay: clickInfo.event.allDay,
+    });
   };
 
   const syncEvent = (ev: any) => {
-    setEvents((prev) =>
-      prev.map((e) =>
-        e.id === ev.id
-          ? { ...e, start: ev.start!, end: ev.end ?? undefined, allDay: ev.allDay }
-          : e
-      )
-    );
+    if (!canEdit) return;
+
+    onUpdate?.({
+      id: String(ev.id),
+      title: ev.title,
+      start: ev.start ?? undefined,
+      end: ev.end ?? undefined,
+      allDay: ev.allDay,
+    });
   };
 
   return (
@@ -79,15 +95,21 @@ export default function Calendar() {
           right: "dayGridMonth,timeGridWeek,timeGridDay",
         }}
         height="auto"
+        contentHeight={900} 
+        expandRows={false} 
+        
+        scrollTime="08:00:00"     
         nowIndicator
-        selectable
-        selectMirror
-        editable
+        selectable={canCreate}
+        selectMirror={canCreate}
+        editable={canEdit}
         events={events}
-        select={handleSelect}
-        eventClick={handleEventClick}
+        select={canCreate ? handleSelect : undefined}
+        eventClick={mode === "edit" ? handleEventClick : undefined}
         eventDrop={(arg: EventDropArg) => syncEvent(arg.event)}
         eventResize={(arg: EventResizeDoneArg) => syncEvent(arg.event)}
+        slotMinTime="00:00:00"
+        slotMaxTime="24:00:00"
       />
     </div>
   );
