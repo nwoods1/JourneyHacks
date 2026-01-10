@@ -1,12 +1,17 @@
+import { redirect } from 'next/navigation';
+// import { createClient } from '@/utils/supabase/server';
 import Navbar from '@/components/Navbar';
 import EventList from '@/components/EventList';
 import CalendarView from '@/components/CalendarView';
 
-export default function Home() {
+export default async function Home() {
+
+
+
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col">
+    <div className="h-screen bg-white text-black flex flex-col overflow-hidden">
       <Navbar />
-      <div className="flex flex-row flex-grow">
+      <div className="flex flex-row flex-1 overflow-hidden">
         <EventList />
         <CalendarView />
       </div>

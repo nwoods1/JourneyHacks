@@ -45,15 +45,17 @@ const events = [
   }
 ];
 
-export default function EventsList() {
+export default function EventList() {
   return (
-    <div className="w-1/3 overflow-y-auto p-6 border-r border-gray-200">
-      <h2 className="text-3xl font-bold mb-6">Upcoming Events</h2>
+    <div className="w-1/3 h-screen border-r border-gray-200 flex flex-col">
+      <h2 className="text-3xl font-bold p-6 pb-4">Proposed Hangouts</h2>
       
-      <div className="flex flex-col gap-4">
-        {events.map((event) => (
-          <EventCard key={event.id} event={event} />
-        ))}
+      <div className="flex-1 overflow-y-auto px-6 pb-6">
+        <div className="flex flex-col gap-4">
+          {events.map((event) => (
+            <EventCard key={event.id} event={event} />
+          ))}
+        </div>
       </div>
     </div>
   );
