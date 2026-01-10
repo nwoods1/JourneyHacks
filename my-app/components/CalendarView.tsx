@@ -19,9 +19,7 @@ function makeId() {
 }
 
 export default function Calendar() {
-  const [events, setEvents] = useState<CalEvent[]>([
-    { id: makeId(), title: "Example", start: new Date().toISOString().slice(0, 10) },
-  ]);
+  const [events, setEvents] = useState<CalEvent[]>([]);
 
   const handleSelect = (info: DateSelectArg) => {
     info.view.calendar.unselect();
@@ -71,7 +69,7 @@ export default function Calendar() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto rounded-xl border bg-white p-4">
+    <div className="max-w-5xl mx-auto rounded-xl bg-white p-4">
       <FullCalendar
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="timeGridWeek"

@@ -11,6 +11,9 @@ import { SignUpUserSteps } from "@/components/tutorial/sign-up-user-steps";
 import { hasEnvVars } from "@/lib/utils";
 import Link from "next/link";
 import { Suspense } from "react";
+import Navbar from '@/components/Navbar';
+import EventList from '@/components/EventList';
+import CalendarView from '@/components/CalendarView';
 
 
 
@@ -22,11 +25,16 @@ type CalEvent = EventInput & { id: string };
 
 
 
-import Calendar from "@/components/calendar/Calendar";
-
 export default function Home() {
   return (
-    <main className="p-6">
-      <Calendar />
+    <main className="h-screen bg-white text-black flex flex-col overflow-hidden">
+      <Navbar />
+
+      <div className="flex flex-row flex-1 overflow-hidden">
+        <EventList />
+        <CalendarView />
+      </div>
     </main>
-  );}
+  );
+}
+
