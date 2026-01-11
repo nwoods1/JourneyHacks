@@ -37,7 +37,6 @@ export default function CalendarView({
     info.view.calendar.unselect();
     const title = window.prompt("Event name?");
     if (!title) return;
-
     onCreate?.({
       id: makeId(),
       title: title.trim(),
@@ -45,6 +44,8 @@ export default function CalendarView({
       end: info.end,
       allDay: info.allDay,
     });
+    console.log(info.start)
+    console.log(info.end)
   };
 
   const handleEventClick = (clickInfo: EventClickArg) => {
