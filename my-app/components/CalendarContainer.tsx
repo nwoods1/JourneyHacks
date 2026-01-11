@@ -54,43 +54,40 @@ export default function CalendarContainer() {
 
   // Day offsets: Mon=0 Tue=1 Wed=2 Thu=3 Fri=4 Sat=5 Sun=6
   const initial: CalEvent[] = [
-    // GRANT: free Mon–Wed (morning + afternoon), busy Thu (no blocks), free Fri–Sat (evening)
-    block("Grant", GRANT, 0, 9, 0, 12, 0),
-    block("Grant", GRANT, 0, 13, 0, 16, 0),
-    block("Grant", GRANT, 1, 9, 30, 12, 30),
-    block("Grant", GRANT, 1, 14, 0, 17, 0),
-    block("Grant", GRANT, 2, 10, 0, 12, 0),
-    block("Grant", GRANT, 2, 13, 30, 15, 30),
-    // Thu (3) intentionally missing for Grant (busy)
-    block("Grant", GRANT, 4, 18, 0, 21, 0),
-    block("Grant", GRANT, 5, 17, 0, 20, 0),
+  // GRANT: Monday 1-7pm + rest of schedule
+  block("Grant", GRANT, 0, 13, 0, 19, 0), // Monday 1-7pm
+  block("Grant", GRANT, 0, 9, 0, 12, 0),
+  block("Grant", GRANT, 1, 9, 30, 12, 30),
+  block("Grant", GRANT, 1, 14, 0, 17, 0),
+  block("Grant", GRANT, 2, 10, 0, 12, 0),
+  block("Grant", GRANT, 2, 13, 30, 15, 30),
+  block("Grant", GRANT, 4, 18, 0, 21, 0),
+  block("Grant", GRANT, 5, 17, 0, 20, 0),
 
-    // SAM: free Mon (midday), Tue–Wed (evenings), busy Thu, free Fri (morning)
-    block("Sam", SAM, 0, 11, 0, 14, 0),
-    block("Sam", SAM, 1, 18, 0, 22, 0),
-    block("Sam", SAM, 2, 18, 30, 21, 30),
-    // Thu busy
-    block("Sam", SAM, 4, 8, 0, 11, 0),
+  // SAM: Monday 1-7pm + rest of schedule
+  block("Sam", SAM, 0, 13, 0, 19, 0), // Monday 1-7pm
+  block("Sam", SAM, 0, 11, 0, 14, 0),
+  block("Sam", SAM, 1, 18, 0, 22, 0),
+  block("Sam", SAM, 2, 18, 30, 21, 30),
+  block("Sam", SAM, 4, 8, 0, 11, 0),
 
-    // HARRY: free Mon–Tue (afternoons), busy Wed, free Thu–Sat (varied)
-    block("Harry", HARRY, 0, 13, 0, 17, 0),
-    block("Harry", HARRY, 1, 12, 0, 16, 0),
-    // Wed busy
-    block("Harry", HARRY, 3, 9, 0, 12, 0),
-    block("Harry", HARRY, 4, 14, 0, 18, 0),
-    block("Harry", HARRY, 5, 10, 0, 13, 0),
+  // HARRY: Monday 1-7pm + rest of schedule
+  block("Harry", HARRY, 0, 13, 0, 19, 0), // Monday 1-7pm
+  block("Harry", HARRY, 1, 12, 0, 16, 0),
+  block("Harry", HARRY, 3, 9, 0, 12, 0),
+  block("Harry", HARRY, 4, 14, 0, 18, 0),
+  block("Harry", HARRY, 5, 10, 0, 13, 0),
 
-    // NAT: free Mon–Wed (late morning), busy Thu, free Fri–Sat (midday)
-    block("Nat", NAT, 0, 10, 0, 12, 0),
-    block("Nat", NAT, 1, 10, 30, 12, 30),
-    block("Nat", NAT, 2, 11, 0, 13, 0),
-    // Thu busy
-    block("Nat", NAT, 4, 12, 0, 15, 0),
-    block("Nat", NAT, 5, 12, 30, 16, 0),
+  // NAT: Monday 1-7pm + rest of schedule
+  block("Nat", NAT, 0, 13, 0, 19, 0), // Monday 1-7pm
+  block("Nat", NAT, 1, 10, 30, 12, 30),
+  block("Nat", NAT, 2, 11, 0, 13, 0),
+  block("Nat", NAT, 4, 12, 0, 15, 0),
+  block("Nat", NAT, 5, 12, 30, 16, 0),
   ];
 
   setEvents(initial);
-}, []);
+  }, []);
 
 
   // Wire up create/update/delete locally (no backend yet)
