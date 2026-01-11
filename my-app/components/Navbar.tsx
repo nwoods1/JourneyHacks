@@ -5,7 +5,7 @@ import { createClient } from '@/lib/supabase/client';
 import { User } from '@supabase/supabase-js';
 import Link from 'next/link';
 
-export default function Navbar() {
+export default function Navbar({ onCreateEventClick }: { onCreateEventClick?: () => void }) {
   const [user, setUser] = useState<User | null>(null);
   const supabase = createClient();
 
@@ -42,7 +42,10 @@ export default function Navbar() {
           {user ? (
             <>
               {/* Create Event Button */}
-              <button className="btn btn-primary rounded-full px-6 py-2 bg-blue-300 hover:bg-blue-400 transition-colors">
+              <button 
+                onClick={onCreateEventClick}
+                className="btn btn-primary rounded-full px-6 py-2 bg-blue-300 hover:bg-blue-400 transition-colors"
+              >
                 + Create Event
               </button>
 
