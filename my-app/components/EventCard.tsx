@@ -20,7 +20,7 @@ interface EventCardProps {
           <div className="flex flex-col text-left">
             <h3 className="text-xl font-bold mb-1">{event.title}</h3>
             <p className="text-sm mb-1">{event.description}</p>
-            <p className="text-xs text-gray-600">Created by: {event.creator}</p>
+            <p className="text-xs text-gray-600">Suggested by: {event.creator}</p>
           </div>
         </div>
       </div>
