@@ -197,7 +197,7 @@ export default function CreateEventForm({ onClose }: { onClose: () => void }) {
           />
         </div>
 
-        <div className="border rounded-lg p-4 space-y-3 bg-gray-50">
+        <div className="border rounded-lg p-4 space-y-3 bg-white">
           <div className="font-semibold text-sm">Availability Window</div>
 
           <div>

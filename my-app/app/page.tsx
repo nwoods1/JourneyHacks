@@ -10,10 +10,10 @@ export default function Home() {
   const [showCreateEvent, setShowCreateEvent] = useState(false);
 
   return (
-    <main className="h-screen bg-white text-black flex flex-col overflow-hidden">
+    <main className="h-screen bg-white text-black flex flex-col">
       <Navbar onCreateEventClick={() => setShowCreateEvent(true)} />
 
-      <div className="flex flex-row flex-1 overflow-hidden">
+      <div className="flex flex-row flex-1">
         {showCreateEvent ? (
           <CreateEventForm onClose={() => setShowCreateEvent(false)} />
         ) : (

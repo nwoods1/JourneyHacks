@@ -58,11 +58,22 @@
   }
 }
 
+.calendar-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* calendar | events list */
+  height: 100vh; /* or a fixed parent height */
+}
+
+.calendar,
+.events-list {
+  height: 100%;
+}
+
 @layer base {
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white text-foreground;
   }
 }

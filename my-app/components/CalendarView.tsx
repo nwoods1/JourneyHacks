@@ -69,26 +69,28 @@ export default function Calendar() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto rounded-xl bg-white p-4">
-      <FullCalendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-        initialView="timeGridWeek"
-        headerToolbar={{
-          left: "prev,next today",
-          center: "title",
-          right: "dayGridMonth,timeGridWeek,timeGridDay",
-        }}
-        height="auto"
-        nowIndicator
-        selectable
-        selectMirror
-        editable
-        events={events}
-        select={handleSelect}
-        eventClick={handleEventClick}
-        eventDrop={(arg: EventDropArg) => syncEvent(arg.event)}
-        eventResize={(arg: EventResizeDoneArg) => syncEvent(arg.event)}
-      />
+    <div className="flex-1 bg-white p-4 overflow-y-auto">
+      <div className="max-w-5xl mx-auto rounded-xl bg-white p-4">
+        <FullCalendar
+          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+          initialView="timeGridWeek"
+          headerToolbar={{
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay",
+          }}
+          height="auto"
+          nowIndicator
+          selectable
+          selectMirror
+          editable
+          events={events}
+          select={handleSelect}
+          eventClick={handleEventClick}
+          eventDrop={(arg: EventDropArg) => syncEvent(arg.event)}
+          eventResize={(arg: EventResizeDoneArg) => syncEvent(arg.event)}
+        />
+      </div>
     </div>
   );
 }
