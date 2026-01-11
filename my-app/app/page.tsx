@@ -3,7 +3,13 @@
 import { useState } from "react";
 import Navbar from '@/components/Navbar';
 import EventList from '@/components/EventList';
-import CalendarView from '@/components/CalendarView';
+import CalendarContainer from "@/components/CalendarContainer";
+
+import { EventInput } from "@fullcalendar/core";
+
+type CalEvent = EventInput & { id: string };
+
+
 import CreateEventForm from '@/components/CreateEventForm';
 
 export default function Home() {
@@ -19,7 +25,7 @@ export default function Home() {
         ) : (
           <EventList />
         )}
-        <CalendarView />
+        <CalendarContainer />
       </div>
     </main>
   );
