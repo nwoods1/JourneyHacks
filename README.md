@@ -1,4 +1,4 @@
-##Inspiration
+##Inspiration##
 As schedules get busier, staying in touch with friends becomes harder—not because people don’t want to meet, but because coordinating time is difficult. Group chats and calendars exist, but they often require back-and-forth and mental overhead just to find a time that works. We wanted to build a simple tool that makes scheduling with friends more visual and less frustrating.
 
 ##What it does
